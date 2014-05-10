@@ -3,44 +3,36 @@
 #include "utility/Adafruit_PWMServoDriver.h"
 
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
-//Adafruit_DCMotor *dcmotor = AFMS.getMotor(3);
-Adafruit_StepperMotor *steppermotor = AFMS.getStepper(200, 1);
+Adafruit_StepperMotor *steppermotor = AFMS.getStepper(200, 2);
 
 volatile byte rpmcount;
-//unsigned int rpm;
-//unsigned long timeold;
-//unsigned int motorSpeed;
+int hallEffectSensorPin1 = 0;
+int hallEffectSensorPin2 = 1;
+int lightPin = 7;
 
 void setup() {
-  attachInterrupt(0, ping, RISING);
-  attachInterrupt(1, ping, RISING);
-  rpmcount = 0;
-//  rpm = 0;
-//  timeold = 0;
+  attachInterrupt(hallEffectSensorPin1, ping, RISING);
+  attachInterrupt(hallEffectSensorPin2, ping, RISING);
+  pinMode(lightPin, OUTPUT);
   AFMS.begin();
-//  dcmotor->setSpeed(0);
-//  dcmotor->run(FORWARD);
-  steppermotor->setSpeed(10);
-//  Serial.begin(9600);
+  rpmcount = 0;
+  steppermotor->setSpeed(1);
 }
 
 void loop() {
-  //delay(10);
-  detachInterrupt(0);
-  detachInterrupt(1);
-  steppermotor->setSpeed(rpmcount*100);
-
-  steppermotor->step(rpmcount*10,FORWARD,MICROSTEP);
-  //rpm = 30*100/(millis() - timeold)*rpmcount*0.1;
-  //timeold = millis();
+  delay(1000);
+  if (rpmcount>0) {
+    digitalWrite(lightPin, HIGH);
+  } else {
+    digitalWrite(lightPin, LOW);
+  }
+  detachInterrupt(hallEffectSensorPin1);
+  detachInterrupt(hallEffectSensorPin2);
+  steppermotor->setSpeed(rpmcount);
+  steppermotor->step(rpmcount,FORWARD,MICROSTEP);
   rpmcount = 0;
-  //motorSpeed = 255;
-  //dcmotor->setSpeed(motorSpeed);
-  //dcmotor->run(FORWARD);
-  attachInterrupt(0, ping, RISING);
-  attachInterrupt(1, ping, RISING);
-  //Serial.print(rpm);
-  //Serial.print("\n");
+  attachInterrupt(hallEffectSensorPin1, ping, RISING);
+  attachInterrupt(hallEffectSensorPin2, ping, RISING);
 }
 
 void ping()
