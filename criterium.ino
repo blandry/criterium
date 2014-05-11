@@ -20,7 +20,6 @@ void setup() {
 }
 
 void loop() {
-  delay(1000);
   if (rpmcount>0) {
     digitalWrite(lightPin, HIGH);
   } else {
