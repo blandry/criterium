@@ -27,7 +27,6 @@ void loop() {
   }
   detachInterrupt(hallEffectSensorPin1);
   detachInterrupt(hallEffectSensorPin2);
-  steppermotor->setSpeed(rpmcount);
   steppermotor->step(rpmcount,FORWARD,MICROSTEP);
   rpmcount = 0;
   attachInterrupt(hallEffectSensorPin1, ping, RISING);
