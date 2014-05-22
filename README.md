@@ -24,7 +24,7 @@ Magnets inside the acrylic chain ring trigger Hall Effect Sensor 2 (the other se
 Power comes from the USB cable that is connected to a 5 watts wall charger. The arduino doesn't behave correctly when using a power block (something must be broken on the board), but works fine with the USB power.
 
 ### Wiring
-The two hall effect sensors, the motor and the light can be disconnected from the rest of the electronics by disconnecting them inside the blue box. Sensor 1 is already disconnected. Sensor 2 is connected with a servo plug that is labeled SENSOR 2. The light and the stepper cables are bundled in the grey ethernet cable. The cables that have brown ends are for th light (with the plug labeled LIGHT). The ones with the white ends are for the servo. If you go up the ones with the white head, they eventually change color to the colors of the ethernet cable. Here is the mapping with the colors of the motor on the other end.
+The two hall effect sensors, the motor and the light can be disconnected from the rest of the electronics by disconnecting them inside the blue box. Sensor 1 is already disconnected. Sensor 2 is connected with a servo plug that is labeled SENSOR 2. The light and the stepper cables are bundled in the grey ethernet cable. The cables that have brown ends are for th light (with the plug labeled LIGHT). The ones with the white ends are for the stepper. If you go up the ones with the white head, they eventually change color to the colors of the ethernet cable. Here is the mapping with the colors of the motor on the other end.
 
 * orange -> red
 * orange-white -> yellow
